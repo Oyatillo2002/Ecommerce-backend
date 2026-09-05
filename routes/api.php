@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,5 @@ Route::apiResources([
     'categories.products' => CategoryProductController::class,
     'favorites' => FavoriteController::class,
     'products' => ProductController::class,
+    'orders' => OrderController::class,
 ]);
