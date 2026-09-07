@@ -5,14 +5,14 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserAddressRequest extends FormRequest
+class StoreUserPaymentsCardsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -23,12 +23,7 @@ class StoreUserAddressRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'latitude' => 'required',
-            'longitude' => 'required',
-            'region' => 'required',
-            'district' => 'required',
-            'street' => 'required',
-            'home' => 'nullable'
+            //
         ];
     }
 }

@@ -42,6 +42,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'api' => [
+            'driver' => 'sanctum', // <-- 'sanctum' bo'lishi kerak
+            'provider' => 'users',
+            'hash' => false,
+        ],
     ],
 
     /*
