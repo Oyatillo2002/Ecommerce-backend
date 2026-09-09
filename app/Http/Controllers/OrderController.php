@@ -36,6 +36,16 @@ class OrderController extends Controller
         $address = UserAddress::find($request->address_id);
         // dd($products);
 
+        foreach($request['products'] as $product){
+            $prod = Product::with('stocks')->findOrFail($product['product_id']);
+
+            if ($prod->stocks()->find($product['stock_id']) && 
+                $prod->stocks()->find($product['stock_id'])->quantity >= $product['quantity']
+                ){
+                    
+                }
+        }
+
 
         auth('sanctum')->user()->orders()->create([
             'comment' => $request->comment,
