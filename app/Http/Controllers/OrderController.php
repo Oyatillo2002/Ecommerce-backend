@@ -32,56 +32,35 @@ class OrderController extends Controller
     {
         $sum = 0;
     $products = [];
+    $notFoundProducts = [];
     $address = UserAddress::find($request->address_id);
 
-    foreach ($request->input('products') as $product) {
-        $prod = Product::with('stocks')->findOrFail($product['product_id']);
-        // $stock = $prod->stocks->firstWhere('id', $product['stock_id']);
+    foreach ($request->input('products') as $requestProduct) {
+        $product = Product::with('stocks')->findOrFail($requestProduct['product_id']);
+        $product->quantity = $requestProduct['quantity'];
 
-        // DIAGNOSTIKA - har bir qadamni ko'rsatadi
-        // logger()->info('Order item debug', [
-        //     'product_id'  => $product['product_id'],
-        //     'stock_id'    => $product['stock_id'],
-        //     'stock_found' => $stock ? true : false,
-        //     'stock_qty'   => $stock?->quantity,
-        //     'request_qty' => $product['quantity'],
-        // ]);
 
-        // if (!$stock) {
-        //     return response()->json([
-        //         'error' => "Stock topilmadi",
-        //         'product_id' => $product['product_id'],
-        //         'stock_id'   => $product['stock_id'],
-        //     ], 422);
-        // }
-
-        // if ($stock->quantity < $product['quantity']) {
-        //     return response()->json([
-        //         'error' => "Omborda yetarli emas",
-        //         'stock_id'   => $stock->id,
-        //         'mavjud'     => $stock->quantity,
-        //         'soralgan'   => $product['quantity'],
-        //     ], 422);
-        // }
         if (
-            $prod->stocks()->find($product['stock_id']) &&
-            $prod->stocks()->find($product['stock_id'])->quantity >= $product['quantity']
+            $product->stocks()->find($requestProduct['stock_id']) &&
+            $product->stocks()->find($requestProduct['stock_id'])->quantity >= $requestProduct['quantity']
         ){
-            $productWithStock = $prod->withStock($product['stock_id']);
+            $productWithStock = $product->withStock($requestProduct['stock_id']);
             $productResource = new ProductResource($productWithStock);
+
+
+
+            $sum  += $productResource['price'];
+            $products[] = $productResource->resolve();
+
+        } else{
+            $requestProduct['we_have'] = $product->stocks()->find($requestProduct['stock_id'])->quantity;
+            $notFoundProducts[] = $requestProduct;
         }
 
-        
-
-        $sum  += $productResource['price'];
-
-        $products[] = $productResource->resolve();
-
     }
-    // dd($sum);
     
-
-    auth('sanctum')->user()->orders()->create([
+    if ($notFoundProducts == [] && $products != [] && $sum != 0){
+        $order = auth('sanctum')->user()->orders()->create([
         'comment'            => $request->comment,
         'delivery_method_id' => $request->delivery_method_id,
         'payment_type_id'    => $request->payment_type_id,
@@ -90,7 +69,22 @@ class OrderController extends Controller
         'products'           => $products,
     ]);
 
-    return 'success';
+        if ($order){
+           foreach ($products as $product){
+               $stock = Stock::find($product['inventory'][0]['id']);
+               $stock->quantity -= $product['order_quantity'];
+               $stock->save();
+            }
+        }
+
+        return 'success';
+    } else{
+        return response([
+            'success' => false,
+            'message' => 'some products not found or does not have in inventory',
+            'not_found_products' => $notFoundProducts,
+        ]);
+    }
 
        
 }
