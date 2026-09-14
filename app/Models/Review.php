@@ -22,4 +22,9 @@ class Review extends Model
     {
         return $this->BelongsTo(Product::class);
     }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
