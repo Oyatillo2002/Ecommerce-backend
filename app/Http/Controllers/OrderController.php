@@ -22,7 +22,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return auth('sanctum')->user()->orders;
+        if(request()->has('status_id')){
+            return $this->response(OrderResource::collection(auth('sanctum')->user()->orders()->where('status_id', request('staus_id'))->paginate(10)));
+        }
+
+        return $this->response(OrderResource::collection(auth('sanctum')->user()->orders()->paginate(10)));
     }
 
     /**
@@ -78,13 +82,10 @@ class OrderController extends Controller
             }
         }
 
-        return 'success';
+        return $this->success('order created', [$order]);
     } else{
-        return response([
-            'success' => false,
-            'message' => 'some products not found or does not have in inventory',
-            'not_found_products' => $notFoundProducts,
-        ]);
+        return $this->error('some products not found or does not have in inventory',
+        ['not_found_products' => $notFoundProducts]);
     }
 
        
@@ -96,7 +97,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return new OrderResource($order);
+        return $this->response(new OrderResource($order));
     }
 
     /**

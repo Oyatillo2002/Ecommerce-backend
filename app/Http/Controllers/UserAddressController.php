@@ -19,10 +19,10 @@ class UserAddressController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
     
-        return auth('sanctum')->user()->addresses;
+        return $this->response(auth('sanctum')->user()->addresses);
     }
 
     
@@ -30,11 +30,11 @@ class UserAddressController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserAddressRequest $request)
+    public function store(StoreUserAddressRequest $request): JsonResponse
     {
 
-        auth('sanctum')->user()->addresses()->create($request->toArray());
-        return true;
+        $addresses = auth('sanctum')->user()->addresses()->create($request->toArray());
+        return $this->success('shipping addresses created', $addresses);
     }
 
     /**
