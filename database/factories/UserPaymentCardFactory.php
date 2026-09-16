@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\UserPaymentsCards;
+use App\Models\UserPaymentCard;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<UserPaymentsCards>
+ * @extends Factory<UserPaymentCard>
  */
-class UserPaymentsCardsFactory extends Factory
+class UserPaymentCardFactory extends Factory
 {
     /**
      * Define the model's default state.

@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserPaymentsCards;
-use App\Http\Requests\StoreUserPaymentsCardsRequest;
-use App\Http\Requests\UpdateUserPaymentsCardsRequest;
+use App\Models\PaymentCardType;
+use App\Http\Requests\StorePaymentCardTypeRequest;
+use App\Http\Requests\UpdatePaymentCardTypeRequest;
 
-class UserPaymentsCardsController extends Controller
+class PaymentCardTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return $this->response(PaymentCardType::all());
     }
 
     /**
@@ -27,7 +27,7 @@ class UserPaymentsCardsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserPaymentsCardsRequest $request)
+    public function store(StorePaymentCardTypeRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class UserPaymentsCardsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UserPaymentsCards $userPaymentsCards)
+    public function show(PaymentCardType $paymentCardType)
     {
         //
     }
@@ -43,7 +43,7 @@ class UserPaymentsCardsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(UserPaymentsCards $userPaymentsCards)
+    public function edit(PaymentCardType $paymentCardType)
     {
         //
     }
@@ -51,7 +51,7 @@ class UserPaymentsCardsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserPaymentsCardsRequest $request, UserPaymentsCards $userPaymentsCards)
+    public function update(UpdatePaymentCardTypeRequest $request, PaymentCardType $paymentCardType)
     {
         //
     }
@@ -59,7 +59,7 @@ class UserPaymentsCardsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UserPaymentsCards $userPaymentsCards)
+    public function destroy(PaymentCardType $paymentCardType)
     {
         //
     }

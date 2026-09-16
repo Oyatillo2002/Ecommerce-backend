@@ -20,6 +20,4 @@ class PaymentType extends Model
     {
         return $this->hasMany(Order::class);
     }
-            
-    
 }

@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\PaymentType;
 use App\Http\Requests\StorePaymentTypeRequest;
 use App\Http\Requests\UpdatePaymentTypeRequest;
-use Illuminate\Database\Eloquent\Collection;
+
 
 class PaymentTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): Collection
+    public function index()
     {
-        return PaymentType::all();
+        return $this->response(PaymentType::all());
     }
 
     /**

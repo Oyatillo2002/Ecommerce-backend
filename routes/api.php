@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\DeliveryMethodController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentCardTypeController;
 use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductReviewController;
@@ -14,7 +15,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\StatusOrderController;
 use App\Http\Controllers\UserAddressController;
-use App\Http\Controllers\UserPaymentsCardsController;
+use App\Http\Controllers\UserPaymentCardController;
 use App\Http\Controllers\UserSettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,9 +37,10 @@ Route::apiResources([
     'delivery-methods' => DeliveryMethodController::class,
     'payment-types' => PaymentTypeController::class,
     'user-addresses' => UserAddressController::class,
-    'user-payment-cards' => UserPaymentsCardsController::class,
     'reviews' => ReviewController::class,
     'products.reviews' => ProductReviewController::class,
     'settings' => SettingController::class,
-    'user-settings' => UserSettingController::class
+    'user-settings' => UserSettingController::class,
+    'payment-card-types' => PaymentCardTypeController::class,
+    'user-payment-cards' => UserPaymentCardController::class,
 ]);

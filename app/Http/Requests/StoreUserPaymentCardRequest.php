@@ -5,14 +5,14 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserPaymentsCardsRequest extends FormRequest
+class StoreUserPaymentCardRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,11 @@ class UpdateUserPaymentsCardsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string',
+            'number' => 'required|string',
+            'exp_date' => 'required|string',
+            'holder_name' => 'required|string',
+            'payment_card_type_id' => 'required',
         ];
     }
 }

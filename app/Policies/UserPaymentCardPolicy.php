@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\UserPaymentsCards;
+use App\Models\UserPaymentCard;
 use Illuminate\Auth\Access\Response;
 
-class UserPaymentsCardsPolicy
+class UserPaymentCardPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class UserPaymentsCardsPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, UserPaymentsCards $userPaymentsCards): bool
+    public function view(User $user, UserPaymentCard $userPaymentCard): bool
     {
         return false;
     }
@@ -35,7 +35,7 @@ class UserPaymentsCardsPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, UserPaymentsCards $userPaymentsCards): bool
+    public function update(User $user, UserPaymentCard $userPaymentCard): bool
     {
         return false;
     }
@@ -43,7 +43,7 @@ class UserPaymentsCardsPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, UserPaymentsCards $userPaymentsCards): bool
+    public function delete(User $user, UserPaymentCard $userPaymentCard): bool
     {
         return false;
     }
@@ -51,7 +51,7 @@ class UserPaymentsCardsPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, UserPaymentsCards $userPaymentsCards): bool
+    public function restore(User $user, UserPaymentCard $userPaymentCard): bool
     {
         return false;
     }
@@ -59,7 +59,7 @@ class UserPaymentsCardsPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, UserPaymentsCards $userPaymentsCards): bool
+    public function forceDelete(User $user, UserPaymentCard $userPaymentCard): bool
     {
         return false;
     }
