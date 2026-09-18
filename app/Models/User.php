@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Order;
 use App\Models\UserAddress;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -91,6 +90,6 @@ class User extends Authenticatable
 
     public function paymentCards(): HasMany
     {
-        return $this->hasMany(UserPaymentCard::class);
+        return $this->hasMany(UserPaymentCards::class);
     }
 }

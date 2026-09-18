@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
             StatusSeeder::class,
             SettingSeeder::class,
             PaymentCardTypeSeeder::class,
-            PaymentTypeSeeder::class,
         ]);
 
        

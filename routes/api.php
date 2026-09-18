@@ -15,7 +15,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\StatusOrderController;
 use App\Http\Controllers\UserAddressController;
-use App\Http\Controllers\UserPaymentCardController;
+use App\Http\Controllers\UserPaymentCardsController;
 use App\Http\Controllers\UserSettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,5 +42,5 @@ Route::apiResources([
     'settings' => SettingController::class,
     'user-settings' => UserSettingController::class,
     'payment-card-types' => PaymentCardTypeController::class,
-    'user-payment-cards' => UserPaymentCardController::class,
+    'user-payment-cards'=> UserPaymentCardsController::class,
 ]);
