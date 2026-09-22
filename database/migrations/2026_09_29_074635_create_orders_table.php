@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->text('comment')->nullable();
-            $table->unsignedBigInteger('sum');
+            $table->unsignedBigInteger('sum')->comment('Sum of order is stored in sum (not tiyn)');
             $table->foreignId('delivery_method_id')->constrained();
             $table->foreignId('payment_type_id')->constrained();
             $table->foreignId('status_id')->default(1)->constrained();
