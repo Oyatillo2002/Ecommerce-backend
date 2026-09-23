@@ -24,7 +24,9 @@ class Order extends Model
 
     protected $casts = [
         'products' => 'array',
-        'address' => 'array'
+        'address' => 'array',
+        'created_at' => 'datetime',
+
     ];
 
     public function user(): BelongsTo
